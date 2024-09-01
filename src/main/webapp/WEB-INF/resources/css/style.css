@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+body {
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+}
+
+.top {
+	height: 100px;
+	width: 100%;
+	float: left;
+	text-align: center;
+	background: linear-gradient(90deg, darkviolet, darkblue, deepskyblue, green, yellow, darkorange, red, black);
+}
+
+.v {
+	height: 507px;
+	width: 12.5%;
+	background-color: darkviolet;
+	float: left;
+}
+
+.i {
+	height: 507px;
+	width: 12.5%;
+	background-color: darkblue;
+	float: left;
+}
+
+.b {
+	height: 507px;
+	width: 12.5%;
+	background-color: deepskyblue;
+	float: left;
+}
+
+.g {
+	height: 507px;
+	width: 12.5%;
+	background-color: green;
+	float: left;
+}
+
+.y {
+	height: 507px;
+	width: 12.5%;
+	background-color: yellow;
+	float: left;
+}
+
+.o {
+	height: 507px;
+	width: 12.5%;
+	background-color: darkorange;
+	float: left;
+}
+
+.r {
+	height: 507px;
+	width: 12.5%;
+	background-color: red;
+	float: left;
+}
+
+.b2 {
+	height: 507px;
+	width: 12.5%;
+	background-color: black;
+	float: left;
+}
