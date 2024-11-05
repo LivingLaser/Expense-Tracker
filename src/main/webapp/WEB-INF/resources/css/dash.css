@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+}
+
+.leftSide {
+    background-color: black;
+    border-radius: 20px;
+    height: 220px;
+    width: 650px;
+}
+
+.heading {
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.balance {
+    text-align: center;
+    color: black;
+    background: linear-gradient(0deg, turquoise 0%, fuchsia 75%);
+    border-radius: 10px;
+    height: 100px;
+    width: 150px;
+}
+
+.balance h5 {
+    padding-top: 20px;
+}
+
+.income {
+    text-align: center;
+    color: black;
+    background-color: turquoise;
+    border-radius: 10px;
+    height: 100px;
+    width: 150px;
+}
+
+.income h5 {
+    padding-top: 20px;
+}
+
+.expense {
+    text-align: center;
+    color: black;
+    background-color: fuchsia;
+    border-radius: 10px;
+    height: 100px;
+    width: 150px;
+}
+
+.expense h5 {
+    padding-top: 20px;
+}
+
+.rightSide {
+    background-color: black;
+    border-radius: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.piechart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    width: 400px;
+}
+
+.bottom {
+    border-radius: 20px;
+    background-color: black;
+}
+
+.upper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lower {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.linechart {
+    height: 500px;
+    width: 1100px;
+}

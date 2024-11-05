@@ -10,5 +10,20 @@ public class HomeController {
 	public String home() {
 		return "index";
 	}
+	
+	@RequestMapping("/faq")
+	public String faqPage() {
+		return "faq";
+	}
+	
+	@RequestMapping("/about")
+	public String aboutUs() {
+		return "aboutus";
+	}
+	
+	@RequestMapping("/register")
+	public String registerPage() {
+		return "login_signup";
+	}
 
 }

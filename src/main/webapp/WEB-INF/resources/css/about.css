@@ -1,0 +1,16 @@
+.body1{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-bottom: 3 rem;
+}
+.colj{
+    background-color: rgb(139, 34, 152);
+    border-radius: 2rem;
+}
+.team{
+    background-color: rgb(139, 34, 152);
+    border-radius: 2rem;
+    height: 20 rem;
+}
