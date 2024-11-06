@@ -37,20 +37,20 @@
         <form class="row g-3" action="insert_record" method="post">
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">Title</label>
-            <input type="text" class="form-control" id="inputEmail4" name="name">
+            <input type="text" class="form-control" id="inputEmail4" name="name" required>
           </div>
           <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Amount</label>
-            <input type="text" class="form-control" id="inputPassword4" name="amount">
+            <input type="text" class="form-control" id="inputPassword4" name="amount" required>
           </div>
           <div class="col-12">
             <label for="inputAddress2" class="form-label">Enter Date</label>
-            <input type="date" class="form-control pt-1" id="inputAddress2" style="padding-top: 0%;" name="date">
+            <input type="date" class="form-control pt-1" id="validDate" style="padding-top: 0%;" name="date" required>
           </div>
 
           <div class="col-md-6">
             <label for="inputState" class="form-label" style="padding-bottom: 0%;">Option</label>
-            <select id="inputState" class="form-select" style="padding: 2%;padding-top: 0%;" name="icon">
+            <select id="inputState" class="form-select" style="padding: 2%;padding-top: 0%;" name="icon" required>
               <option selected>--Select--</option>
               <option value="fa fa-shopping-bag">Shopping</option>
               <option value="fa fa-plane">Travel</option>
@@ -181,6 +181,8 @@
 
   <!-- footer -->
   <jsp:include page="inc/footer.jsp"></jsp:include>
+  
+  <script src="resources/js/transaction.js"></script>
 </body>
 </html>
 </c:if>
