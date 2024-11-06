@@ -150,7 +150,7 @@
             </div>
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Date</label>
-              <input type="date" class="form-control" id="exampleFormControlInput1" value="${record.getOldDate()}" name="date">
+              <input type="date" class="form-control" id="updateDate" value="${record.getOldDate()}" name="date">
             </div>
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Option</label>
