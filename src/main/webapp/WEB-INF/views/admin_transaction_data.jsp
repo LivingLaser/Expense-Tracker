@@ -74,10 +74,8 @@
                         <th scope="col">User ID</th>
                         <th scope="col">Category</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Amount</th>
                         <th scope="col">Date</th>
                         <th scope="col">Time</th>
-                        <th scope="col">ADMIN ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,18 +94,8 @@
                         <td>${record.getUid()}</td>
                         <td><i class="${record.getIcon()} fa-2x" aria-hidden="true"></i></td>
                         <td>${record.getName()}</td>
-                        <td><i class="fa fa-inr" aria-hidden="true"></i>${record.getAmount()}</td>
                         <td>${record.getDate()}</td>
                         <td>${record.getTime()}</td>
-                        <td>
-                            <form action="delete_transaction" method="post">
-                                <input type="hidden" value="${record.getUid()}" name="uid">
-                                <input type="hidden" value="${record.getType()}" name="type">
-                                <input type="hidden" value="${record.getOldDate()}" name="date">
-                                <input type="hidden" value="${record.getTime()}" name="time">
-                                <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure ?')">
-                            </form>
-                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

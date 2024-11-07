@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -36,7 +35,7 @@ public class AdminController {
 		
 		if(Validation.loginValidation(admin, retrieved)) {
 			model.addAttribute("adminLoggedIn", true);
-			return "admin_dashboard";
+			return "redirect:admin_dashboard";
 		}
 		else {
 			model.addAttribute("admin", admin);
@@ -57,18 +56,6 @@ public class AdminController {
 		return "admin_user_data";
 	}
 	
-	@RequestMapping(value="/delete_user/{uid}", method=RequestMethod.POST)
-	public String deleteUserById(@PathVariable("uid") String uid) {
-		int rows = adminDao.deleteUser(uid);
-		
-		if(rows==1) {
-			return "redirect:user_list";
-		}
-		else {
-			return "error/page500";
-		}
-	}
-	
 	@RequestMapping("/record_list")
 	public String getRecordList(Model model) {
 		List<Transaction> records = adminDao.recordList();
@@ -77,18 +64,6 @@ public class AdminController {
 		model.addAttribute("records", records);
 		model.addAttribute("total", total);
 		return "admin_transaction_data";
-	}
-	
-	@RequestMapping(value="delete_transaction", method=RequestMethod.POST)
-	public String deleteTransaction(@ModelAttribute("transaction") Transaction transaction) {
-		int rows = adminDao.deleteRecord(transaction);
-		
-		if(rows==1) {
-			return "redirect:record_list";
-		}
-		else {
-			return "error/page500";
-		}
 	}
 	
 	@RequestMapping("/admin_logout")

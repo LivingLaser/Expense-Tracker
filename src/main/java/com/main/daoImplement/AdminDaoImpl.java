@@ -42,12 +42,6 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public int deleteUser(String uid) {
-		int rows = template.update(AdminQuery.DELETE_USER, uid);
-		return rows;
-	}
-
-	@Override
 	public List<Transaction> recordList() {
 		RowMapper<Transaction> rowMapper = new TransactionRowMapper();
 		List<Transaction> records = template.query(AdminQuery.SELECT_ALL_RECORD, rowMapper);
@@ -66,12 +60,6 @@ public class AdminDaoImpl implements AdminDao {
 		RowMapper<Transaction> rowMapper = new TransactionExpenseRowMapper();
 		Transaction transaction = template.queryForObject(AdminQuery.TOTAL_EXPENSE, rowMapper);
 		return transaction;
-	}
-	
-	@Override
-	public int deleteRecord(Transaction transaction) {
-		int rows = template.update(AdminQuery.DELETE_RECORD, transaction.getUid(), transaction.getType(), transaction.getDate(), transaction.getTime());
-		return rows;
 	}
 
 }

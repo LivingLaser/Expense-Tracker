@@ -53,7 +53,6 @@
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Password</th>
-                        <th scope="col">ADMIN ACTIONS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -67,9 +66,6 @@
                         <td>${user.getEmail()}</td>
                         <td>${user.getPhone()}</td>
                         <td>${user.getPassword()}</td>
-                        <td>
-                            <a class="btn btn-danger" href="${pageContext.request.contextPath}/delete_user/${user.getUid()}" onclick="return confirm('Are you sure ?')">Delete</a>
-                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
