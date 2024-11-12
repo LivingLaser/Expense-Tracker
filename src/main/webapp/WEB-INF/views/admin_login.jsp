@@ -23,8 +23,8 @@
 <body>
     <p class="h2 py-3 text-center text-light bg-dark">ADMINISTRATOR AUTHENTICATION</p>
 
-    <c:if test="${adminMessage!=null}">
     <!-- alert box -->
+    <c:if test="${adminMessage!=null}">
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <c:out value="${adminMessage}"></c:out>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

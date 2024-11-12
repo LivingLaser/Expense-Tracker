@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<c:if test="${(validUser!=null) && (userLoggedIn)}">
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
@@ -14,7 +13,6 @@
   <link rel="stylesheet" href="resources/css/dash.css">
 </head>
 <body>
-
   <!-- navbar -->
   <jsp:include page="inc/navbar.jsp"></jsp:include>
 
@@ -143,4 +141,3 @@
   </script>
 </body>
 </html>
-</c:if>

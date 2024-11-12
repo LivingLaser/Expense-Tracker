@@ -67,7 +67,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/admin_logout")
-	public String logoutAdmin(SessionStatus session) {
+	public String logoutAdmin(Model model, SessionStatus session) {
+		model.addAttribute("adminLoggedIn", false);
 		session.setComplete();
 		return "redirect:/";
 	}

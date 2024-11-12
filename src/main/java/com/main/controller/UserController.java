@@ -66,7 +66,8 @@ public class UserController {
 	}
 	
 	@RequestMapping("/user_logout")
-	public String logoutUser(SessionStatus session) {
+	public String logoutUser(Model model, SessionStatus session) {
+		model.addAttribute("userLoggedIn", false);
 		session.setComplete();
 		return "redirect:/";
 	}

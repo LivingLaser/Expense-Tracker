@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.main.authentication.Records;
+import com.main.authentication.Validation;
 import com.main.bean.Transaction;
 import com.main.bean.User;
 import com.main.daoImplement.TransactionDaoImpl;
@@ -23,19 +25,32 @@ public class TransactionController {
 	TransactionDaoImpl transactionDao;
 	
 	@RequestMapping(value="/insert_record", method=RequestMethod.POST)
-	public String recordTransaction(@ModelAttribute("transaction") Transaction transaction) {
-		int rows = transactionDao.insertRecord(transaction);
-		
-		if(rows==1) {
+	public String recordTransaction(@ModelAttribute("transaction") Transaction transaction, RedirectAttributes redirect) {
+		if(Validation.amountValidation(transaction.getAmount())) {
+			int rows = transactionDao.insertRecord(transaction);
+			
+			if(rows==1) {
+				if(transaction.getType().equals("income")) {
+					return "redirect:incomes";
+				}
+				else {
+					return "redirect:expenses";
+				}
+			}
+			else {
+				return "error/page500";
+			}
+		}
+		else {
+			redirect.addFlashAttribute("invalidRecord", transaction);
+			redirect.addFlashAttribute("recordMessage", "Please enter a valid amount...");
+			
 			if(transaction.getType().equals("income")) {
 				return "redirect:incomes";
 			}
 			else {
 				return "redirect:expenses";
 			}
-		}
-		else {
-			return "error/page500";
 		}
 	}
 	

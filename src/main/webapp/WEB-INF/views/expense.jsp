@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:if test="${(validUser!=null) && (userLoggedIn)}">
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
@@ -33,31 +32,38 @@
   <div class="body">
     <section class="form">
       <div class="container">
-
+      	<!-- alert box -->
+      	<c:if test="${recordMessage!=null}">
+    	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        	<i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        	<c:out value="${recordMessage}"></c:out>
+        	<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    	</div>
+    	</c:if>
         <form class="row g-3" action="insert_record" method="post">
           <div class="col-md-6">
-            <label for="inputEmail4" class="form-label">Title</label>
-            <input type="text" class="form-control" id="inputEmail4" name="name" required>
+            <label for="inputEmail4" class="form-label">Name</label>
+            <input type="text" class="form-control" value="${invalidRecord.getName()}" name="name" required>
           </div>
           <div class="col-md-6">
             <label for="inputPassword4" class="form-label">Amount</label>
-            <input type="text" class="form-control" id="inputPassword4" name="amount" required>
+            <input type="text" class="form-control" value="${invalidRecord.getAmount()}" name="amount" required>
           </div>
           <div class="col-12">
             <label for="inputAddress2" class="form-label">Enter Date</label>
-            <input type="date" class="form-control pt-1" id="validDate" style="padding-top: 0%;" name="date" required>
+            <input type="date" class="form-control pt-1" id="validDate" value="${invalidRecord.getDate()}" style="padding-top: 0%;" name="date" required>
           </div>
 
           <div class="col-md-6">
-            <label for="inputState" class="form-label" style="padding-bottom: 0%;">Option</label>
+            <label for="inputState" class="form-label" style="padding-bottom: 0%;">Category</label>
             <select id="inputState" class="form-select" style="padding: 2%;padding-top: 0%;" name="icon" required>
               <option selected>--Select--</option>
-              <option value="fa fa-shopping-bag">Shopping</option>
-              <option value="fa fa-plane">Travel</option>
-              <option value="fa fa-file-text">Bill Payment</option>
-              <option value="fa fa-cutlery">Beverage</option>
-              <option value="fa fa-btc">Crypto</option>
-              <option value="fa fa-credit-card-alt">Others</option>
+              <option <c:if test="${invalidRecord.getIcon().equals('fa fa-shopping-bag')}">selected</c:if> value="fa fa-shopping-bag">Shopping</option>
+              <option <c:if test="${invalidRecord.getIcon().equals('fa fa-plane')}">selected</c:if> value="fa fa-plane">Travel</option>
+              <option <c:if test="${invalidRecord.getIcon().equals('fa fa-file-text')}">selected</c:if> value="fa fa-file-text">Bill Payment</option>
+              <option <c:if test="${invalidRecord.getIcon().equals('fa fa-cutlery')}">selected</c:if> value="fa fa-cutlery">Beverage</option>
+              <option <c:if test="${invalidRecord.getIcon().equals('fa fa-btc')}">selected</c:if> value="fa fa-btc">Crypto</option>
+              <option <c:if test="${invalidRecord.getIcon().equals('fa fa-credit-card-alt')}">selected</c:if> value="fa fa-credit-card-alt">Others</option>
             </select>
           </div>
           
@@ -141,7 +147,7 @@
         <form action="update_record" method="post">
           <div class="modal-body">
             <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Title</label>
+              <label for="exampleFormControlInput1" class="form-label">Name</label>
               <input type="text" class="form-control" id="exampleFormControlInput1" value="${record.getName()}" name="name">
             </div>
             <div class="mb-3">
@@ -149,11 +155,11 @@
               <input type="text" class="form-control" id="exampleFormControlInput1" value="${record.getAmount()}" name="amount">
             </div>
             <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Date</label>
-              <input type="date" class="form-control" id="updateDate" value="${record.getOldDate()}" name="date">
+              <label for="exampleFormControlInput1" class="form-label">Enter Date</label>
+              <input type="date" class="form-control" id="updateDate_${row}" value="${record.getOldDate()}" name="date">
             </div>
             <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">Option</label>
+              <label for="exampleFormControlInput1" class="form-label">Category</label>
 	          <select class="form-control" id="exampleFormControlInput1" name="icon">
 	              <option selected>--Select--</option>
 	              <option <c:if test="${record.getIcon().equals('fa fa-shopping-bag')}">selected</c:if> value="fa fa-shopping-bag">Shopping</option>
@@ -177,6 +183,23 @@
       </div>
     </div>
   </div>
+  <!-- date validation -->
+  <script>
+  	var updateDate = document.getElementById('updateDate_${row}');
+  	
+  	// Get today's date
+  	var updateToday = new Date();
+  	var updateTodayDate = updateToday.toISOString().split("T")[0]; // Formatted as YYYY-MM-DD
+  	
+  	// Calculate date 10 years ago
+  	var updatePast = new Date();
+  	updatePast.setFullYear(updateToday.getFullYear() - 10);
+  	var updatePastDate = updatePast.toISOString().split("T")[0]; // Formatted as YYYY-MM-DD
+  	
+  	// Set the max min date attributes
+  	updateDate.max = updateTodayDate;
+  	updateDate.min = updatePastDate;
+  </script>
   </c:forEach>
 
   <!-- footer -->
@@ -185,4 +208,3 @@
   <script src="resources/js/transaction.js"></script>
 </body>
 </html>
-</c:if>
