@@ -17,7 +17,15 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int signup(User user) {
-		int rows = template.update(UserQuery.INSERT, user.getName(), user.getEmail(), user.getPhone(), user.getPassword());
+		int rows;
+		
+		try {
+			rows = template.update(UserQuery.INSERT, user.getName(), user.getEmail(), user.getPhone(), user.getPassword());
+		}
+		catch(Exception e) {
+			return 0;
+		}
+		
 		return rows;
 	}
 

@@ -57,7 +57,7 @@
           <div class="col-md-6">
             <label for="inputState" class="form-label" style="padding-bottom: 0%;">Category</label>
             <select id="inputState" class="form-select" style="padding: 2%;padding-top: 0%;" name="icon" required>
-              <option selected>--Select--</option>
+              <option value="">--Select--</option>
               <option <c:if test="${invalidRecord.getIcon().equals('fa fa-shopping-bag')}">selected</c:if> value="fa fa-shopping-bag">Shopping</option>
               <option <c:if test="${invalidRecord.getIcon().equals('fa fa-plane')}">selected</c:if> value="fa fa-plane">Travel</option>
               <option <c:if test="${invalidRecord.getIcon().equals('fa fa-file-text')}">selected</c:if> value="fa fa-file-text">Bill Payment</option>
@@ -161,7 +161,6 @@
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Category</label>
 	          <select class="form-control" id="exampleFormControlInput1" name="icon">
-	              <option selected>--Select--</option>
 	              <option <c:if test="${record.getIcon().equals('fa fa-shopping-bag')}">selected</c:if> value="fa fa-shopping-bag">Shopping</option>
 	              <option <c:if test="${record.getIcon().equals('fa fa-plane')}">selected</c:if> value="fa fa-plane">Travel</option>
 	              <option <c:if test="${record.getIcon().equals('fa fa-file-text')}">selected</c:if> value="fa fa-file-text">Bill Payment</option>

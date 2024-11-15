@@ -1,5 +1,7 @@
 package com.main.daoImplement;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -50,16 +52,34 @@ public class AdminDaoImpl implements AdminDao {
 
 	@Override
 	public Transaction totalIncome() {
-		RowMapper<Transaction> rowMapper = new TransactionIncomeRowMapper();
-		Transaction transaction = template.queryForObject(AdminQuery.TOTAL_INCOME, rowMapper);
-		return transaction;
+		Transaction income = template.queryForObject(AdminQuery.TOTAL_INCOME, new RowMapper<Transaction>() {
+
+			@Override
+			public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Transaction transaction = new Transaction();
+				transaction.setTotalIncome(rs.getString("income"));
+				return transaction;
+			}
+			
+		});
+		
+		return income;
 	}
 
 	@Override
 	public Transaction totalExpense() {
-		RowMapper<Transaction> rowMapper = new TransactionExpenseRowMapper();
-		Transaction transaction = template.queryForObject(AdminQuery.TOTAL_EXPENSE, rowMapper);
-		return transaction;
+		Transaction expense = template.queryForObject(AdminQuery.TOTAL_EXPENSE, new RowMapper<Transaction>() {
+
+			@Override
+			public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Transaction transaction = new Transaction();
+				transaction.setTotalExpense(rs.getString("expense"));
+				return transaction;
+			}
+			
+		});
+		
+		return expense;
 	}
 
 }

@@ -43,7 +43,7 @@ public class TransactionController {
 		}
 		else {
 			redirect.addFlashAttribute("invalidRecord", transaction);
-			redirect.addFlashAttribute("recordMessage", "Please enter a valid amount...");
+			redirect.addFlashAttribute("recordMessage", "Please enter a valid amount");
 			
 			if(transaction.getType().equals("income")) {
 				return "redirect:incomes";

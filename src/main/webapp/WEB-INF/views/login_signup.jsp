@@ -30,11 +30,11 @@
                     <input type="password" value="${userPassed.getPassword()}" required name="password">
                 </label>
 
-                <button type="submit" class="submit">Log In</button>
+                <button type="submit" class="submit" >Log In</button>
             </form>
-            
+
             <c:if test="${loginMessage!=null}">
-            	<span style="color: red;">${loginMessage}</span>
+                <span style="color: red;">${loginMessage}</span>
             </c:if>
 
         </div>
@@ -45,9 +45,9 @@
                 <div class="img__text m--up">
 
                     <h3>Don't have an account? Please Sign up!</h3>
-                    
+
                     <c:if test="${signupMessage!=null}">
-                    	<h4 style="padding-top: 100px;">${signupMessage}</h4>
+                        <h4 style="padding-top: 100px; color: ${color};">${signupMessage}</h4>
                     </c:if>
                 </div>
                 <div class="img__text m--in">
@@ -65,14 +65,17 @@
                     <label>
                         <span>Name</span>
                         <input type="text" value="${userData.getName()}" required name="name">
+                        
+                        <div id="name-error" class="error-message">Only letters and spaces are allowed</div>
                     </label>
                     <label>
                         <span>Email</span>
                         <input type="email" value="${userData.getEmail()}" required name="email">
+                        <div id="signup-email-error" class="error-message">Invalid email</div>
                     </label>
                     <label>
                         <span>Phone No</span>
-                        <input type="text" value="${userData.getPhone()}" required name="phone">
+                        <input type="text" title="Give a valid 10 digit phone no." pattern="[6-9]{1}[0-9]{9}" value="${userData.getPhone()}" required name="phone">
                     </label>
                     <label>
                         <span>Password</span>
@@ -84,13 +87,13 @@
                     </label>
                     <span id="error-message" style="color: red; display: none;">Passwords do not match!</span>
 
-                    <button type="submit" class="submit">Sign Up</button>
+                    <button type="submit" class="submit" id="signupButton" disabled>Sign Up</button>
                 </form>
 
             </div>
         </div>
     </div>
-    
+
     <script src="resources/js/login_signup.js"></script>
 </body>
 </html>

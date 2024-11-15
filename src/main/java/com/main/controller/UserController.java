@@ -25,11 +25,13 @@ public class UserController {
 		int rows = userDao.signup(user);
 		
 		if(rows==1) {
+			model.addAttribute("color", "chartreuse");
 			model.addAttribute("signupMessage", "Account is created. You can now login to your account.");
 			return "login_signup";
 		}
 		else {
 			model.addAttribute("userData", user);
+			model.addAttribute("color", "crimson");
 			model.addAttribute("signupMessage", "This email is already exist. Try with another email.");
 			return "login_signup";
 		}

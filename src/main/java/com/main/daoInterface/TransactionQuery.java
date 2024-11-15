@@ -3,8 +3,8 @@ package com.main.daoInterface;
 public interface TransactionQuery {
 	
 	String INSERT_RECORD = "insert into transaction set uid=?, type=?, name=?, amount=?, icon=?, date=?";
-	String INCOMES = "select uid, type, name, amount, icon, DATE_FORMAT(date, '%d-%m-%Y') as date, date as old_date, time from transaction where uid=? and type='income' order by STR_TO_DATE(date, '%Y-%m-%d') desc";
-	String EXPENSES = "select uid, type, name, amount, icon, DATE_FORMAT(date, '%d-%m-%Y') as date, date as old_date, time from transaction where uid=? and type='expense' order by STR_TO_DATE(date, '%Y-%m-%d') desc";
+	String INCOMES = "select uid, type, name, amount, icon, DATE_FORMAT(date, '%d-%m-%Y') as date, date as old_date, time from transaction where uid=? and type='income' order by old_date desc";
+	String EXPENSES = "select uid, type, name, amount, icon, DATE_FORMAT(date, '%d-%m-%Y') as date, date as old_date, time from transaction where uid=? and type='expense' order by old_date desc";
 	String TOTAL_INCOME = "select IFNULL(SUM(amount), 0) as income from transaction where uid=? and type='income'";
 	String TOTAL_EXPENSE = "select IFNULL(SUM(amount), 0) as expense from transaction where uid=? and type='expense'";
 	String TOTAL_BALANCE = "select IFNULL(SUM(amount), 0) - IFNULL((select SUM(amount) from transaction where uid=? and type='expense'), 0) as balance from transaction where uid=? and type='income'";

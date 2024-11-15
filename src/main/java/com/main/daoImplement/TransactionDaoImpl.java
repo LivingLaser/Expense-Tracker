@@ -1,5 +1,7 @@
 package com.main.daoImplement;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -39,15 +41,33 @@ public class TransactionDaoImpl implements TransactionDao {
 
 	@Override
 	public Transaction totalIncome(String uid) {
-		RowMapper<Transaction> rowMapper = new TransactionIncomeRowMapper();
-		Transaction income = template.queryForObject(TransactionQuery.TOTAL_INCOME, rowMapper, uid);
+		Transaction income = template.queryForObject(TransactionQuery.TOTAL_INCOME, new RowMapper<Transaction>() {
+
+			@Override
+			public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Transaction transaction = new Transaction();
+				transaction.setTotalIncome(rs.getString("income"));
+				return transaction;
+			}
+			
+		}, uid);
+		
 		return income;
 	}
 
 	@Override
 	public Transaction totalExpense(String uid) {
-		RowMapper<Transaction> rowMapper = new TransactionExpenseRowMapper();
-		Transaction expense = template.queryForObject(TransactionQuery.TOTAL_EXPENSE, rowMapper, uid);
+		Transaction expense = template.queryForObject(TransactionQuery.TOTAL_EXPENSE, new RowMapper<Transaction>() {
+
+			@Override
+			public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Transaction transaction = new Transaction();
+				transaction.setTotalExpense(rs.getString("expense"));
+				return transaction;
+			}
+			
+		}, uid);
+		
 		return expense;
 	}
 
@@ -65,14 +85,34 @@ public class TransactionDaoImpl implements TransactionDao {
 
 	@Override
 	public Transaction totalBalance(String uid) {
-		RowMapper<Transaction> rowMapper = new TransactionBalanceRowMapper();
-		Transaction balance = template.queryForObject(TransactionQuery.TOTAL_BALANCE, rowMapper, uid, uid);
+		Transaction balance = template.queryForObject(TransactionQuery.TOTAL_BALANCE, new RowMapper<Transaction>() {
+
+			@Override
+			public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Transaction transaction = new Transaction();
+				transaction.setBalance(rs.getString("balance"));
+				return transaction;
+			}
+			
+		}, uid, uid);
+		
 		return balance;
 	}
 
 	@Override
 	public List<Transaction> incomeData(String uid, int months) {
-		RowMapper<Transaction> rowMapper = new TransactionDataRowMapper();
+		RowMapper<Transaction> rowMapper = new RowMapper<Transaction>() {
+
+			@Override
+			public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Transaction transaction = new Transaction();
+				transaction.setDate(rs.getString("month"));
+				transaction.setAmount(rs.getString("data"));
+				return transaction;
+			}
+			
+		};
+		
 		List<Transaction> incomes = null;
 		
 		if(months==3) {
@@ -90,7 +130,18 @@ public class TransactionDaoImpl implements TransactionDao {
 
 	@Override
 	public List<Transaction> expenseData(String uid, int months) {
-		RowMapper<Transaction> rowMapper = new TransactionDataRowMapper();
+		RowMapper<Transaction> rowMapper = new RowMapper<Transaction>() {
+
+			@Override
+			public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Transaction transaction = new Transaction();
+				transaction.setDate(rs.getString("month"));
+				transaction.setAmount(rs.getString("data"));
+				return transaction;
+			}
+			
+		};
+		
 		List<Transaction> expenses = null;
 		
 		if(months==3) {
