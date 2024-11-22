@@ -95,7 +95,6 @@
           <div class="container-fluid pt-5">
             <h5 class="ps-3">Email: ${validUser.getEmail()}</h5>
             <h5 class="ps-3">Phone: ${validUser.getPhone()}</h5>
-            <h5 class="ps-3">Password: ${validUser.getPassword()}</h5>
           </div>
         </div>
         <div class="modal-footer">
@@ -118,19 +117,19 @@
         <div class="modal-body">
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Name</label>
-            <input type="text" class="form-control" placeholder="Name" value="${validUser.getName()}" name="name">
+            <input type="text" class="form-control" placeholder="Name" pattern="[A-Za-z\s]+" title="Only letters and spaces allowed" value="${validUser.getName()}" name="name" required>
           </div>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email</label>
-            <input type="email" class="form-control" placeholder="Email" value="${validUser.getEmail()}" name="email">
+            <input type="email" class="form-control" value="${validUser.getEmail()}" name="email" disabled>
           </div>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Phone</label>
-            <input type="text" class="form-control" placeholder="Phone" value="${validUser.getPhone()}" name="phone">
+            <input type="text" class="form-control" placeholder="Phone" pattern="[6-9]{1}[0-9]{9}" title="Enter a valid 10 digit no." value="${validUser.getPhone()}" name="phone" required>
           </div>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Password</label>
-            <input type="password" class="form-control" placeholder="Password" value="${validUser.getPassword()}" name="password">
+            <input type="password" class="form-control" placeholder="Password" value="${validUser.getPassword()}" name="password" required>
           </div>
         </div>
         <div class="modal-footer">
