@@ -49,6 +49,12 @@ function toggleButton(button, isEnabled) {
     button.disabled = !isEnabled;
 }
 
+function validateEmail() {
+    const emailInput = document.querySelector('.sign-up input[type="email"]');
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail|yahoo|outlook)\.com$/;
+    return emailPattern.test(emailInput.value);
+}
+
 // Check if passwords match
 function confirmPasswordMatch() {
     const passwordInput = document.getElementById('password');

@@ -52,7 +52,6 @@
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Phone</th>
-                        <th scope="col">Password</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -65,7 +64,6 @@
                         <td>${user.getName()}</td>
                         <td>${user.getEmail()}</td>
                         <td>${user.getPhone()}</td>
-                        <td>${user.getPassword()}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
