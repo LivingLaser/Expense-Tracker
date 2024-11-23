@@ -33,7 +33,7 @@ public class AdminController {
 	public String loginAdmin(@ModelAttribute("admin") Admin admin, Model model) {
 		Admin retrieved = adminDao.login(admin);
 		
-		if(Validation.loginValidation(admin, retrieved)) {
+		if(Validation.isValidUser(admin, retrieved)) {
 			model.addAttribute("adminLoggedIn", true);
 			return "redirect:admin_dashboard";
 		}

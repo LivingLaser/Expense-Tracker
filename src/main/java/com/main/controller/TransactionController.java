@@ -26,7 +26,7 @@ public class TransactionController {
 	
 	@RequestMapping(value="/insert_record", method=RequestMethod.POST)
 	public String recordTransaction(@ModelAttribute("transaction") Transaction transaction, RedirectAttributes redirect) {
-		if(Validation.amountValidation(transaction.getAmount())) {
+		if(Validation.isValidAmount(transaction.getAmount())) {
 			int rows = transactionDao.insertRecord(transaction);
 			
 			if(rows==1) {

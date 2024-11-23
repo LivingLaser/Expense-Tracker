@@ -41,7 +41,7 @@ public class UserController {
 	public String loginUser(@ModelAttribute("user") User user, Model model) {
 		User retrieved = userDao.login(user);
 		
-		if(Validation.loginValidation(user, retrieved)) {
+		if(Validation.isValidUser(user, retrieved)) {
 			model.addAttribute("validUser", retrieved);
 			model.addAttribute("userLoggedIn", true);
 			return "redirect:dashboard_quarter";
