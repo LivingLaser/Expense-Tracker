@@ -121,7 +121,8 @@
           </div>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email</label>
-            <input type="email" class="form-control" value="${validUser.getEmail()}" name="email" disabled>
+            <input type="email" class="form-control" value="${validUser.getEmail()}" disabled>
+            <input type="hidden" value="${validUser.getEmail()}" name="email">
           </div>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Phone</label>
