@@ -115,7 +115,7 @@ public class TransactionController {
 		Map<Integer, String> expenseData = Records.getChartData(transactionDao.expenseData(user.getUid(), 3), 3);
 		model.addAttribute("transaction", transaction);
 		model.addAttribute("chartHeading", "Quarter Budget Analysis");
-		model.addAttribute("labels", Records.getLabels(3));
+		model.addAttribute("labels", Records.getChartLabel(3));
 		model.addAttribute("incomeData", incomeData);
 		model.addAttribute("expenseData", expenseData);
 		return "dashboard";
@@ -130,7 +130,7 @@ public class TransactionController {
 		Map<Integer, String> expenseData = Records.getChartData(transactionDao.expenseData(user.getUid(), 6), 6);
 		model.addAttribute("transaction", transaction);
 		model.addAttribute("chartHeading", "Semi-Annual Budget Analysis");
-		model.addAttribute("labels", Records.getLabels(6));
+		model.addAttribute("labels", Records.getChartLabel(6));
 		model.addAttribute("incomeData", incomeData);
 		model.addAttribute("expenseData", expenseData);
 		return "dashboard";
@@ -145,7 +145,7 @@ public class TransactionController {
 		Map<Integer, String> expenseData = Records.getChartData(transactionDao.expenseData(user.getUid(), 12), 12);
 		model.addAttribute("transaction", transaction);
 		model.addAttribute("chartHeading", "Annual Budget Analysis");
-		model.addAttribute("labels", Records.getLabels(12));
+		model.addAttribute("labels", Records.getChartLabel(12));
 		model.addAttribute("incomeData", incomeData);
 		model.addAttribute("expenseData", expenseData);
 		return "dashboard";

@@ -9,7 +9,7 @@ import com.main.bean.Transaction;
 
 public class Records {
 	
-	public static List<String> getLabels(int months) {
+	public static List<String> getChartLabel(int months) {
 		List<String> labels = null;
 		
 		if(months==3) {
