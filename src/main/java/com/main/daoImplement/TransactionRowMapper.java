@@ -19,7 +19,7 @@ public class TransactionRowMapper implements RowMapper<Transaction> {
 		transaction.setAmount(rs.getString("amount"));
 		transaction.setIcon(rs.getString("icon"));
 		transaction.setDate(rs.getString("date"));
-		transaction.setOldDate(rs.getString("old_date"));
+		transaction.setCurrDate(rs.getString("curr_date"));
 		transaction.setTime(rs.getString("time"));
 		
 		return transaction;

@@ -57,7 +57,7 @@ public class AdminDaoImpl implements AdminDao {
 			@Override
 			public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Transaction transaction = new Transaction();
-				transaction.setTotalIncome(rs.getString("income"));
+				transaction.setAmount(rs.getString("income"));
 				return transaction;
 			}
 			
@@ -73,7 +73,7 @@ public class AdminDaoImpl implements AdminDao {
 			@Override
 			public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Transaction transaction = new Transaction();
-				transaction.setTotalExpense(rs.getString("expense"));
+				transaction.setAmount(rs.getString("expense"));
 				return transaction;
 			}
 			

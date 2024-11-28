@@ -108,12 +108,14 @@ public class TransactionController {
 	
 	@RequestMapping("/dashboard_quarter")
 	public String quarterDashboard(@SessionAttribute("validUser") User user, Model model) {
-		Transaction transaction = transactionDao.totalBalance(user.getUid());
-		transaction.setTotalIncome(transactionDao.totalIncome(user.getUid()).getTotalIncome());
-		transaction.setTotalExpense(transactionDao.totalExpense(user.getUid()).getTotalExpense());
+		Transaction totalBalance = transactionDao.totalBalance(user.getUid());
+		Transaction totalIncome = transactionDao.totalIncome(user.getUid());
+		Transaction totalExpense = transactionDao.totalExpense(user.getUid());
 		Map<Integer, String> incomeData = Records.getChartData(transactionDao.incomeData(user.getUid(), 3), 3);
 		Map<Integer, String> expenseData = Records.getChartData(transactionDao.expenseData(user.getUid(), 3), 3);
-		model.addAttribute("transaction", transaction);
+		model.addAttribute("totalBalance", totalBalance);
+		model.addAttribute("totalIncome", totalIncome);
+		model.addAttribute("totalExpense", totalExpense);
 		model.addAttribute("chartHeading", "Quarter Budget Analysis");
 		model.addAttribute("labels", Records.getChartLabel(3));
 		model.addAttribute("incomeData", incomeData);
@@ -123,12 +125,14 @@ public class TransactionController {
 	
 	@RequestMapping("/dashboard_semi")
 	public String semiDashboard(@SessionAttribute("validUser") User user, Model model) {
-		Transaction transaction = transactionDao.totalBalance(user.getUid());
-		transaction.setTotalIncome(transactionDao.totalIncome(user.getUid()).getTotalIncome());
-		transaction.setTotalExpense(transactionDao.totalExpense(user.getUid()).getTotalExpense());
+		Transaction totalBalance = transactionDao.totalBalance(user.getUid());
+		Transaction totalIncome = transactionDao.totalIncome(user.getUid());
+		Transaction totalExpense = transactionDao.totalExpense(user.getUid());
 		Map<Integer, String> incomeData = Records.getChartData(transactionDao.incomeData(user.getUid(), 6), 6);
 		Map<Integer, String> expenseData = Records.getChartData(transactionDao.expenseData(user.getUid(), 6), 6);
-		model.addAttribute("transaction", transaction);
+		model.addAttribute("totalBalance", totalBalance);
+		model.addAttribute("totalIncome", totalIncome);
+		model.addAttribute("totalExpense", totalExpense);
 		model.addAttribute("chartHeading", "Semi-Annual Budget Analysis");
 		model.addAttribute("labels", Records.getChartLabel(6));
 		model.addAttribute("incomeData", incomeData);
@@ -138,12 +142,14 @@ public class TransactionController {
 	
 	@RequestMapping("/dashboard_annual")
 	public String annualDashboard(@SessionAttribute("validUser") User user, Model model) {
-		Transaction transaction = transactionDao.totalBalance(user.getUid());
-		transaction.setTotalIncome(transactionDao.totalIncome(user.getUid()).getTotalIncome());
-		transaction.setTotalExpense(transactionDao.totalExpense(user.getUid()).getTotalExpense());
+		Transaction totalBalance = transactionDao.totalBalance(user.getUid());
+		Transaction totalIncome = transactionDao.totalIncome(user.getUid());
+		Transaction totalExpense = transactionDao.totalExpense(user.getUid());
 		Map<Integer, String> incomeData = Records.getChartData(transactionDao.incomeData(user.getUid(), 12), 12);
 		Map<Integer, String> expenseData = Records.getChartData(transactionDao.expenseData(user.getUid(), 12), 12);
-		model.addAttribute("transaction", transaction);
+		model.addAttribute("totalBalance", totalBalance);
+		model.addAttribute("totalIncome", totalIncome);
+		model.addAttribute("totalExpense", totalExpense);
 		model.addAttribute("chartHeading", "Annual Budget Analysis");
 		model.addAttribute("labels", Records.getChartLabel(12));
 		model.addAttribute("incomeData", incomeData);

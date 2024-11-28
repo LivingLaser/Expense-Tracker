@@ -24,15 +24,15 @@
       <div class="body">
         <div class="balance">
           <h5>Balance</h5>
-          <h6><i class="fa fa-inr" aria-hidden="true"></i>${transaction.getBalance()}</h6>
+          <h6><i class="fa fa-inr" aria-hidden="true"></i>${totalBalance.getAmount()}</h6>
         </div>
         <div class="income">
           <h5>Income</h5>
-          <h6><i class="fa fa-inr" aria-hidden="true"></i>${transaction.getTotalIncome()}</h6>
+          <h6><i class="fa fa-inr" aria-hidden="true"></i>${totalIncome.getAmount()}</h6>
         </div>
         <div class="expense">
           <h5>Expense</h5>
-          <h6><i class="fa fa-inr" aria-hidden="true"></i>${transaction.getTotalExpense()}</h6>
+          <h6><i class="fa fa-inr" aria-hidden="true"></i>${totalExpense.getAmount()}</h6>
         </div>
       </div>
     </div>
@@ -68,10 +68,10 @@
   <script>
     // Doughnut Chart
     const dChart = document.getElementById('doughnut').getContext('2d');
-    var income = '${transaction.getTotalIncome()}';
-    var expense = '${transaction.getTotalExpense()}';
-    var savings = '${transaction.getBalance()}';
-    <c:if test="${fn:contains(transaction.getBalance(), '-')}">savings = '0'</c:if>
+    var income = '${totalIncome.getAmount()}';
+    var expense = '${totalExpense.getAmount()}';
+    var savings = '${totalBalance.getAmount()}';
+    <c:if test="${fn:contains(totalBalance.getAmount(), '-')}">savings = '0'</c:if>
 
     new Chart(dChart, {
       type: 'doughnut',

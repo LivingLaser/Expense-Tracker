@@ -59,10 +59,11 @@ public class AdminController {
 	@RequestMapping("/record_list")
 	public String getRecordList(Model model) {
 		List<Transaction> records = adminDao.recordList();
-		Transaction total = adminDao.totalIncome();
-		total.setTotalExpense(adminDao.totalExpense().getTotalExpense());
+		Transaction totalIncome = adminDao.totalIncome();
+		Transaction totalExpense = adminDao.totalExpense();
 		model.addAttribute("records", records);
-		model.addAttribute("total", total);
+		model.addAttribute("totalIncome", totalIncome);
+		model.addAttribute("totalExpense", totalExpense);
 		return "admin_transaction_data";
 	}
 	

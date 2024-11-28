@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
@@ -21,7 +22,7 @@
       <ul class="nav nav-pills">
         <li class="nav-item">
         	<a class="nav-link" style="font-size: xx-large; color: blueviolet;">
-        		Income : <i class="fa fa-inr" aria-hidden="true"></i>${totalIncome.getTotalIncome()}
+        		Income : <i class="fa fa-inr" aria-hidden="true"></i>${totalIncome.getAmount()}
         	</a>
         </li>
       </ul>
@@ -118,7 +119,7 @@
               	<form action="delete_record" method="post">
 	              	<input type="hidden" value="${income.getUid()}" name="uid">
 	              	<input type="hidden" value="${income.getType()}" name="type">
-	              	<input type="hidden" value="${income.getOldDate()}" name="date">
+	              	<input type="hidden" value="${income.getCurrDate()}" name="currDate">
 	              	<input type="hidden" value="${income.getTime()}" name="time">
 	              	<button type="submit" class="btn btn-dark">
 	                  <i class="fa fa-trash" aria-hidden="true"></i> Delete
@@ -155,8 +156,9 @@
               <input type="text" class="form-control" id="exampleFormControlInput1" value="${record.getAmount()}" name="amount">
             </div>
             <div class="mb-3">
+              <c:set var="date" value="${fn:split(record.getDate(), '-')}"></c:set>
               <label for="exampleFormControlInput1" class="form-label">Enter Date</label>
-              <input type="date" class="form-control" id="updateDate_${row}" value="${record.getOldDate()}" name="date">
+              <input type="date" class="form-control" id="updateDate_${row}" value="${date[2]}-${date[1]}-${date[0]}" name="date">
             </div>
             <div class="mb-3">
               <label for="exampleFormControlInput1" class="form-label">Category</label>
@@ -174,7 +176,7 @@
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <input type="hidden" value="${record.getUid()}" name="uid">
             <input type="hidden" value="${record.getType()}" name="type">
-            <input type="hidden" value="${record.getOldDate()}" name="oldDate">
+            <input type="hidden" value="${record.getCurrDate()}" name="currDate">
             <input type="hidden" value="${record.getTime()}" name="time">
             <button type="submit" class="btn btn-outline-light">Update</button>
           </div>

@@ -8,11 +8,8 @@ public class Transaction {
 	private String amount;
 	private String icon;
 	private String date;
-	private String oldDate;
+	private String currDate;
 	private String time;
-	private String totalIncome;
-	private String totalExpense;
-	private String balance;
 	
 	public String getUid() {
 		return uid;
@@ -56,11 +53,11 @@ public class Transaction {
 		this.date = date;
 	}
 	
-	public String getOldDate() {
-		return oldDate;
+	public String getCurrDate() {
+		return currDate;
 	}
-	public void setOldDate(String oldDate) {
-		this.oldDate = oldDate;
+	public void setCurrDate(String currDate) {
+		this.currDate = currDate;
 	}
 	
 	public String getTime() {
@@ -68,27 +65,6 @@ public class Transaction {
 	}
 	public void setTime(String time) {
 		this.time = time;
-	}
-	
-	public String getTotalIncome() {
-		return totalIncome;
-	}
-	public void setTotalIncome(String totalIncome) {
-		this.totalIncome = totalIncome;
-	}
-	
-	public String getTotalExpense() {
-		return totalExpense;
-	}
-	public void setTotalExpense(String totalExpense) {
-		this.totalExpense = totalExpense;
-	}
-	
-	public String getBalance() {
-		return balance;
-	}
-	public void setBalance(String balance) {
-		this.balance = balance;
 	}
 
 }

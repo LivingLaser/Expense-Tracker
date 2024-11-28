@@ -50,13 +50,13 @@
                     <li class="nav-item me-5">
                         <h2 class="text-success">
                             <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                            <i class="fa fa-inr" aria-hidden="true"></i>${total.getTotalIncome()}
+                            <i class="fa fa-inr" aria-hidden="true"></i>${totalIncome.getAmount()}
                         </h2>
                     </li>
                     <li class="nav-item me-5">
                         <h2 class="text-danger">
                             <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                            <i class="fa fa-inr" aria-hidden="true"></i>${total.getTotalExpense()}
+                            <i class="fa fa-inr" aria-hidden="true"></i>${totalExpense.getAmount()}
                         </h2>
                     </li>
                 </ul>
@@ -75,6 +75,7 @@
                         <th scope="col">Category</th>
                         <th scope="col">Name</th>
                         <th scope="col">Date</th>
+                        <th scope="col">Date Created</th>
                         <th scope="col">Time</th>
                     </tr>
                 </thead>
@@ -95,6 +96,7 @@
                         <td><i class="${record.getIcon()} fa-2x" aria-hidden="true"></i></td>
                         <td>${record.getName()}</td>
                         <td>${record.getDate()}</td>
+                        <td>${record.getCurrDate()}</td>
                         <td>${record.getTime()}</td>
                     </tr>
                 </c:forEach>

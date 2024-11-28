@@ -46,7 +46,7 @@ public class TransactionDaoImpl implements TransactionDao {
 			@Override
 			public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Transaction transaction = new Transaction();
-				transaction.setTotalIncome(rs.getString("income"));
+				transaction.setAmount(rs.getString("income"));
 				return transaction;
 			}
 			
@@ -62,7 +62,7 @@ public class TransactionDaoImpl implements TransactionDao {
 			@Override
 			public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Transaction transaction = new Transaction();
-				transaction.setTotalExpense(rs.getString("expense"));
+				transaction.setAmount(rs.getString("expense"));
 				return transaction;
 			}
 			
@@ -73,13 +73,13 @@ public class TransactionDaoImpl implements TransactionDao {
 
 	@Override
 	public int updateRecord(Transaction transaction) {
-		int rows = template.update(TransactionQuery.UPDATE_RECORD, transaction.getName(), transaction.getAmount(), transaction.getIcon(), transaction.getDate(), transaction.getUid(), transaction.getType(), transaction.getOldDate(), transaction.getTime());
+		int rows = template.update(TransactionQuery.UPDATE_RECORD, transaction.getName(), transaction.getAmount(), transaction.getIcon(), transaction.getDate(), transaction.getUid(), transaction.getType(), transaction.getCurrDate(), transaction.getTime());
 		return rows;
 	}
 
 	@Override
 	public int deleteRecord(Transaction transaction) {
-		int rows = template.update(TransactionQuery.DELETE_RECORD, transaction.getUid(), transaction.getType(), transaction.getDate(), transaction.getTime());
+		int rows = template.update(TransactionQuery.DELETE_RECORD, transaction.getUid(), transaction.getType(), transaction.getCurrDate(), transaction.getTime());
 		return rows;
 	}
 
@@ -90,7 +90,7 @@ public class TransactionDaoImpl implements TransactionDao {
 			@Override
 			public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Transaction transaction = new Transaction();
-				transaction.setBalance(rs.getString("balance"));
+				transaction.setAmount(rs.getString("balance"));
 				return transaction;
 			}
 			
