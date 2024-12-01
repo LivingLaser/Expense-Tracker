@@ -6,6 +6,6 @@ public interface UserQuery {
 	String SELECT = "select * from user where email=? and password=?";
 	String UPDATE = "update user set name=?, email=?, phone=?, password=? where uid=?";
 	String DELETE = "delete from user where uid=?";
-	String DELETE_RECORD = "delete from transaction where uid=?";
+	String DELETE_RECORDS = "delete from transaction where uid=?";
 
 }
