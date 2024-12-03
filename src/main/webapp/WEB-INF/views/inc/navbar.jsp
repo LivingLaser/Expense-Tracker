@@ -62,6 +62,7 @@
                     </c:if>
                     <c:if test="${(validUser!=null) && (userLoggedIn)}">
                     <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user_logout">Logout</a></li>
+                    <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#confirmationModal">Delete Account</a></li>
                     </c:if>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="${pageContext.request.contextPath}/admin_login">ADMIN</a></li>
@@ -78,6 +79,14 @@
       </div>
     </div>
   </nav>
+  
+  <c:if test="${accountMessage!=null}">
+  <div class="container alert alert-danger alert-dismissible fade show rounded-4 mt-3" role="alert">
+    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+    <c:out value="${accountMessage}"></c:out>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  </c:if>
 
   <!-- modal for profile page -->
   <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -137,6 +146,59 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <input type="hidden" value="${validUser.getUid()}" name="uid">
           <button type="submit" class="btn btn-outline-light">Update</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- modal for delete confirmation -->
+  <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Warning</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <h5 class="ps-3">By continuing to this your account will be permanently deleted from our system.</h5>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#deleteModal">Yes, I understand</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- modal for delete account -->
+  <div class="modal fade" id="deleteModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Account Deletion</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="delete_account" method="post">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Enter Your Password</label>
+            <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Password" name="password" required>
+            <input type="hidden" value="${validUser.getEmail()}" name="email">
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="flexCheckDefault" required>
+            <label class="form-check-label" for="flexCheckDefault">I agree to delete my user data</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="flexCheckChecked" required>
+            <label class="form-check-label" for="flexCheckChecked">I agree to delete my transaction data</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-outline-danger">Delete My Account</button>
         </div>
         </form>
       </div>

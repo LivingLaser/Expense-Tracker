@@ -51,14 +51,8 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public int deleteUser(String uid) {
-		int rows = template.update(UserQuery.DELETE, uid);
-		return rows;
-	}
-
-	@Override
-	public void deleteRecords(String uid) {
-		template.update(UserQuery.DELETE_RECORDS, uid);
+	public void deleteUser(String uid) {
+		template.update(UserQuery.DELETE, uid);
 	}
 
 }

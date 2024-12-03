@@ -7,7 +7,6 @@ public interface UserDao {
 	int signup(User user);
 	User login(User user);
 	int updateUser(User user);
-	int deleteUser(String uid);
-	void deleteRecords(String uid);
+	void deleteUser(String uid);
 
 }
