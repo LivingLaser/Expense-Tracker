@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.main.authentication.Validation;
 import com.main.bean.User;
@@ -72,6 +73,22 @@ public class UserController {
 		model.addAttribute("userLoggedIn", false);
 		session.setComplete();
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value="/delete_account", method=RequestMethod.POST)
+	public String deleteAccount(@ModelAttribute("user") User user, RedirectAttributes redirect, SessionStatus status) {
+		User retrieved = userDao.login(user);
+		
+		if(Validation.isValidUser(user, retrieved)) {
+			userDao.deleteUser(retrieved.getUid());
+			status.setComplete();
+			redirect.addFlashAttribute("accountMessage", "Your account is successfully deleted.");
+			return "redirect:register";
+		}
+		else {
+			redirect.addFlashAttribute("accountMessage", "Incorrect Password, try again after sometime");
+			return "redirect:dashboard_quarter";
+		}
 	}
 
 }

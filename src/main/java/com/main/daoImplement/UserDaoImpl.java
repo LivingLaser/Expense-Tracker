@@ -50,4 +50,9 @@ public class UserDaoImpl implements UserDao {
 		return rows;
 	}
 
+	@Override
+	public void deleteUser(String uid) {
+		template.update(UserQuery.DELETE, uid);
+	}
+
 }

@@ -49,6 +49,11 @@
                     <c:if test="${signupMessage!=null}">
                         <h4 style="padding-top: 100px; color: ${color};">${signupMessage}</h4>
                     </c:if>
+                    
+                    <c:if test="${accountMessage!=null}">
+                        <h4 style="padding-top: 100px; color: chartreuse;">${accountMessage} 
+                        <a href="${pageContext.request.contextPath}/" style="color: chartreuse">Go to Home.</a></h4>
+                    </c:if>
                 </div>
                 <div class="img__text m--in">
 
