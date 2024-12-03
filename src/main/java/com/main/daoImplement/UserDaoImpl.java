@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public int updateUser(User user) {
-		int rows = template.update(UserQuery.UPDATE, user.getName(), user.getEmail(), user.getPhone(), user.getPassword(), user.getUid());
+		int rows = template.update(UserQuery.UPDATE, user.getName(), user.getPhone(), user.getPassword(), user.getUid());
 		return rows;
 	}
 

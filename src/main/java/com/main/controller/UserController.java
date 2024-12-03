@@ -22,24 +22,24 @@ public class UserController {
 	UserDaoImpl userDao;
 	
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
-	public String signupUser(@ModelAttribute("user") User user, Model model) {
+	public String signupUser(@ModelAttribute("user") User user, RedirectAttributes redirect) {
 		int rows = userDao.signup(user);
 		
 		if(rows==1) {
-			model.addAttribute("color", "chartreuse");
-			model.addAttribute("signupMessage", "Account is created. You can now login to your account.");
-			return "login_signup";
+			redirect.addFlashAttribute("color", "chartreuse");
+			redirect.addFlashAttribute("signupMessage", "Account is created. You can now login to your account.");
+			return "redirect:register";
 		}
 		else {
-			model.addAttribute("userData", user);
-			model.addAttribute("color", "crimson");
-			model.addAttribute("signupMessage", "This email is already exist. Try with another email.");
-			return "login_signup";
+			redirect.addFlashAttribute("userData", user);
+			redirect.addFlashAttribute("color", "crimson");
+			redirect.addFlashAttribute("signupMessage", "This email is already exist. Try with another email.");
+			return "redirect:register";
 		}
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String loginUser(@ModelAttribute("user") User user, Model model) {
+	public String loginUser(@ModelAttribute("user") User user, Model model, RedirectAttributes redirect) {
 		User retrieved = userDao.login(user);
 		
 		if(Validation.isValidUser(user, retrieved)) {
@@ -48,20 +48,20 @@ public class UserController {
 			return "redirect:dashboard_quarter";
 		}
 		else {
-			model.addAttribute("userPassed", user);
-			model.addAttribute("loginMessage", "Wrong Email ID or Password");
-			return "login_signup";
+			redirect.addFlashAttribute("userPassed", user);
+			redirect.addFlashAttribute("loginMessage", "Wrong Email ID or Password");
+			return "redirect:register";
 		}
 	}
 	
 	@RequestMapping(value="/update_user", method=RequestMethod.POST)
-	public String updateUser(@ModelAttribute("user") User user, Model model, SessionStatus status) {
+	public String updateUser(@ModelAttribute("user") User user, RedirectAttributes redirect, SessionStatus status) {
 		int rows = userDao.updateUser(user);
 		
 		if(rows==1) {
 			status.setComplete();
-			model.addAttribute("loginMessage", "Login again to your account");
-			return "login_signup";
+			redirect.addFlashAttribute("loginMessage", "Login again to your account");
+			return "redirect:register";
 		}
 		else {
 			return "error/page500";

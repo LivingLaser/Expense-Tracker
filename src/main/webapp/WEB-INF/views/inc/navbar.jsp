@@ -131,7 +131,6 @@
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Email</label>
             <input type="email" class="form-control" value="${validUser.getEmail()}" disabled>
-            <input type="hidden" value="${validUser.getEmail()}" name="email">
           </div>
           <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Phone</label>
@@ -143,7 +142,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
           <input type="hidden" value="${validUser.getUid()}" name="uid">
           <button type="submit" class="btn btn-outline-light">Update</button>
         </div>
